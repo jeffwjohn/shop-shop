@@ -11,6 +11,8 @@ const { Provider } = StoreContext;
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useProductReducer({
     products: [],
+    cart: [],
+    cartOpen: false,
     categories: [],
     currentCategory: "",
   });
@@ -33,8 +35,8 @@ const StoreProvider = ({ value = [], ...props }) => {
 // This is a lot to take in, and it takes some developers years to grasp it and put it to use. But in short, what we did here was create our own functionality to manage state at a global level and make it available to all of our other components through a special <Provider> component. The last thing we need to do is create the custom function using the useContext() Hook to be used by the components that actually need the data our <StoreProvider> will be, well . . . providing!
 
 const useStoreContext = () => {
-    return useContext(StoreContext);
-  };
-  // We just created our own custom React Hook! When we execute this function from within a component, we will receive the [state, dispatch] data our StoreProvider provider manages for us. This means that any component that has access to our StoreProvider component can use any data in our global state container or update it using the dispatch function.
+  return useContext(StoreContext);
+};
+// We just created our own custom React Hook! When we execute this function from within a component, we will receive the [state, dispatch] data our StoreProvider provider manages for us. This means that any component that has access to our StoreProvider component can use any data in our global state container or update it using the dispatch function.
 
-  export { StoreProvider, useStoreContext };
+export { StoreProvider, useStoreContext };
